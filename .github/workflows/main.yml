@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Scraper
 
 # Controls when the workflow will run
 on:
@@ -43,4 +43,7 @@ jobs:
       
       - name: Show installed packages
         run: pip list
+
+      - name: Scrape Site
+        run: scrapy runspider car_prices/car_prices/spiders/cars.py
   
