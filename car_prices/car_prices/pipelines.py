@@ -6,7 +6,7 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-from datetime import datetime
+import datetime
 import pytz
 
 class CarPricesPipeline:
@@ -14,7 +14,7 @@ class CarPricesPipeline:
     def process_item(self, item, spider):
         """Adding a column with modified date and time"""
         adapter = ItemAdapter(item)
-        adapter['car_modified'] = datetime.now(pytz.timezone('Europe/Lisbon'))
+        adapter['car_modified'] = datetime.datetime.now(pytz.timezone('Europe/Lisbon'))
         adapter['car_make'][0] = adapter['car_make'][0].upper()
         adapter['car_age'] = datetime.date.today().year - adapter['first_registration_year']
 
