@@ -16,6 +16,6 @@ class CarPricesPipeline:
         adapter = ItemAdapter(item)
         adapter['car_modified'] = datetime.datetime.now(pytz.timezone('Europe/Lisbon'))
         adapter['car_make'][0] = adapter['car_make'][0].upper()
-        adapter['car_age'] = datetime.date.today().year - adapter['car_first_registration']
+        adapter['car_age'] = datetime.date.today().year - adapter['car_first_registration'][0]
 
         return item
