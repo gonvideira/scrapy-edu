@@ -6,23 +6,12 @@ cursor = db.cursor()
 # Specify the DDL to a table:
 TABLE_DDL = """CREATE TABLE CAR_PRICES (
                 car_id                  INT,
-                car_title               TEXT,
-                car_created             DATETIME,
                 car_modified            DATETIME,
-                car_shortDescription    TEXT,
-                car_url                 TEXT,
-                car_loc_city            TEXT,
-                car_loc_region          TEXT,
                 car_price_value         REAL,
                 car_price_currency      TEXT,
-                car_make                TEXT,
-                car_version             TEXT,
-                car_model               TEXT,
-                car_fuel                TEXT,
-                car_first_registration  INT,
-                car_age                 INT,
-                car_mileage             INT,
-                car_engine_power        INT
+                FOREIGN KEY (car_id)
+                    REFERENCES CAR_ADS (car_id)
+
                 )"""
 
 # Call the `cursor.execute` method, passing tbl1_ddl & tbl2_ddl as arguments.
