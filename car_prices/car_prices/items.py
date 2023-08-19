@@ -27,3 +27,4 @@ class CarItem(Item):
     car_first_registration = Field()
     car_mileage = Field()
     car_engine_power = Field()
+    car_modified = Field()
