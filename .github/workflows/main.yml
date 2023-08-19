@@ -45,6 +45,6 @@ jobs:
         run: pip list
 
       - name: Scrape Site
-        run: scrapy crawl cars
+        run: scrapy crawl cars -O cars.json
         working-directory: car_prices
   
