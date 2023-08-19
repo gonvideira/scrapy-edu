@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Scraper
 
 # Controls when the workflow will run
@@ -48,3 +46,13 @@ jobs:
         run: scrapy crawl cars -O cars.json
         working-directory: car_prices
   
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "updated files" --allow-empty)
+      
+      - name: Push files
+        run: git push --all
+        
