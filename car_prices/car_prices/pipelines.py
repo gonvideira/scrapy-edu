@@ -5,8 +5,8 @@
 
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
 import datetime
+from itemadapter import ItemAdapter
 import pytz
 
 class CarPricesPipeline:
