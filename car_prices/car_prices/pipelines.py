@@ -15,8 +15,14 @@ class CarPricesPipeline:
         """Adding a column with modified date and time"""
         adapter = ItemAdapter(item)
         
+        adapter['car_id'] = int(adapter['car_id'])
+        adapter['car_mileage'] = int(adapter['car_mileage'])
+        adapter['car_engine_power'] = int(adapter['car_engine_power'])
+        adapter['car_first_registration'] = int(adapter['car_first_registration'])
+        adapter['car_first_registration_month'] = int(adapter['car_first_registration_month'])
+        
         month_today = datetime.date.today().year + datetime.date.today().month / 12
-        car_month = int(adapter['car_first_registration']) + int(adapter['car_first_registration_month']) / 12
+        car_month = adapter['car_first_registration'] + adapter['car_first_registration_month'] / 12
 
         adapter['car_modified'] = datetime.datetime.now(pytz.timezone('Europe/Lisbon'))
         adapter['car_make'] = adapter['car_make'].upper()
