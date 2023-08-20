@@ -3,7 +3,6 @@ from datetime import date
 import time
 import scrapy
 from scrapy import Request
-from scrapy.loader import ItemLoader
 from car_prices.items import CarItem
 
 class CarsSpider(scrapy.Spider):
@@ -57,7 +56,7 @@ class CarsSpider(scrapy.Spider):
         )
 
         page_counter = 0
-        while page_counter < number_pages:
+        while page_counter < number_pages: # number_pages
             time.sleep(5)
             page_counter += 1
             page_url = (
@@ -81,8 +80,6 @@ class CarsSpider(scrapy.Spider):
                 "bc8acc7555bc32419ddececae32%22%2C%22version%22%3A1%7D%7D"
                 )
 
-            self.log(f'\nO contador da página é: {page_counter}\n')
-            self.log(f'O URL da página é: \n{page_url}\n')
             yield Request(page_url, callback=self.parse_cars)
 
     
@@ -91,101 +88,38 @@ class CarsSpider(scrapy.Spider):
         json_response = json.loads(response.body.decode('utf-8'))
         cars = json_response['data']['advertSearch']['edges']
         for car in cars:
-            item_vehicle = ItemLoader(item=CarItem(), response=response)
+            # item_vehicle = ItemLoader(item=CarItem(), response=response)
+            item_vehicle = CarItem()
 
-            item_vehicle.add_value(
-                'car_id',
-                car['node']['id']
-            )
-            item_vehicle.add_value(
-                'car_title',
-                car['node']['title']
-            )
-            item_vehicle.add_value(
-                'car_created',
-                car['node']['createdAt']
-            )
-            item_vehicle.add_value(
-                'car_shortDescription',
-                car['node']['shortDescription']
-            )
-            item_vehicle.add_value(
-                'car_url',
-                 car['node']['url']
-            )
-            item_vehicle.add_value(
-                'car_badges',
-                 car['node']['badges']
-            )
-            item_vehicle.add_value(
-                'car_loc_city',
-                 car['node']['location']['city']['name']
-            )
-            item_vehicle.add_value(
-                'car_loc_region',
-                 car['node']['location']['region']['name']
-            )
-            item_vehicle.add_value(
-                'car_price_value',
-                 car['node']['price']['amount']['units']
-            )
-            item_vehicle.add_value(
-                'car_price_currency',
-                 car['node']['price']['amount']['currencyCode']
-            )
+            item_vehicle['car_id'] = car['node']['id']
+            item_vehicle['car_title'] = car['node']['title']
+            item_vehicle['car_created'] = car['node']['createdAt']
+            item_vehicle['car_shortDescription'] = car['node']['shortDescription']
+            item_vehicle['car_url'] = car['node']['url']
+            item_vehicle['car_badges'] = car['node']['badges']
+            item_vehicle['car_loc_city'] = car['node']['location']['city']['name']
+            item_vehicle['car_loc_region'] = car['node']['location']['region']['name']
+            item_vehicle['car_price_value'] = car['node']['price']['amount']['units']
+            item_vehicle['car_price_currency'] = car['node']['price']['amount']['currencyCode']
+
             for dict in car['node']['parameters']:
-                # origin
                 if dict['key'] == 'origin':
-                    item_vehicle.add_value(
-                        'car_origin',
-                         dict['displayValue']
-                    )
-                # make
+                    item_vehicle['car_origin'] = dict['displayValue']
                 if dict['key'] == 'make':
-                    item_vehicle.add_value(
-                        'car_make',
-                         dict['displayValue']
-                    )
-                # version
+                    item_vehicle['car_make'] = dict['displayValue']
                 if dict['key'] == 'version':
-                    item_vehicle.add_value(
-                        'car_version',
-                         dict['displayValue']
-                    )
-                # model
+                    item_vehicle['car_version'] = dict['displayValue']
                 if dict['key'] == 'model':
-                    item_vehicle.add_value(
-                        'car_model',
-                         dict['displayValue']
-                    )
-                # fuel type
+                    item_vehicle['car_model'] = dict['displayValue']
                 if dict['key'] == 'fuel_type':
-                    item_vehicle.add_value(
-                        'car_fuel',
-                         dict['displayValue']
-                    )
-                # first registration year
+                    item_vehicle['car_fuel'] = dict['displayValue']
                 if dict['key'] == 'first_registration_year':
-                    item_vehicle.add_value(
-                        'car_first_registration',
-                         dict['value']
-                    )
-                # first registration month
+                    item_vehicle['car_first_registration'] = dict['value']
                 if dict['key'] == 'first_registration_month':
-                    item_vehicle.add_value(
-                        'car_first_registration_month',
-                         dict['value']
-                    )
-                # mileage
+                    item_vehicle['car_first_registration_month'] = dict['value']
                 if dict['key'] == 'mileage':
-                    item_vehicle.add_value(
-                        'car_mileage',
-                         dict['value']
-                    )
-                # engine power
+                    item_vehicle['car_mileage'] = dict['value']
                 if dict['key'] == 'engine_power':
-                    item_vehicle.add_value(
-                        'car_engine_power',
-                         dict['value']
-                    )
-            yield item_vehicle.load_item()
+                    item_vehicle['car_engine_power'] = dict['value']
+
+            yield item_vehicle
