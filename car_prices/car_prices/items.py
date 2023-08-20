@@ -26,6 +26,7 @@ class CarItem(Item):
     car_model = Field()
     car_fuel = Field()
     car_first_registration = Field()
+    car_first_registration_month = Field()
     car_age = Field()
     car_mileage = Field()
     car_engine_power = Field()
