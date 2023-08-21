@@ -30,6 +30,6 @@ class CarPricesPipeline:
         
         created = datetime.datetime.strptime(adapter['car_created'], '%Y-%m-%d %H:%M:%S').astimezone(pytz.timezone('Europe/Lisbon'))
         
-        adapter['car_ad_days'] = (adapter['car_modified'] - created).days
+        adapter['car_ad_days'] = max((adapter['car_modified'] - created).days, 0)
 
         return item
