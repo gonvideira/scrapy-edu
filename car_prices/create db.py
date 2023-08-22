@@ -4,15 +4,16 @@ db = sqlite3.connect('car_prices/tests.db')
 cursor = db.cursor()
 
 # Specify the DDL to a table:
-TABLE_DDL = """CREATE TABLE CAR_PRICES (
-                car_id                  INT,
-                car_modified            DATETIME,
-                car_price_value         REAL,
-                car_price_currency      TEXT,
-                FOREIGN KEY (car_id)
-                    REFERENCES CAR_ADS (car_id)
-
-                )"""
+TABLE_DDL = (
+    'CREATE TABLE CAR_PRICES ('
+    'car_id INT,'
+    'car_modified DATETIME,'
+    'car_price_value REAL,'
+    'car_price_currency TEXT,'
+    'FOREIGN KEY (car_id)'
+    '   REFERENCES CAR_ADS (car_id)'
+    ')'
+)
 
 # Call the `cursor.execute` method, passing tbl1_ddl & tbl2_ddl as arguments.
 cursor.execute(TABLE_DDL)

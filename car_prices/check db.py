@@ -13,6 +13,8 @@ headers = [ii[0] for ii in cursor.description]
 for header in headers:
     print(header)
 
+for record in cursor:
+    print(record)
 
 # Close connection to `sample.db`.
 db.close()
