@@ -26,6 +26,7 @@ class CarPricesPipeline:
 
         adapter['car_modified'] = datetime.datetime.now(pytz.timezone('Europe/Lisbon'))
         adapter['car_make'] = adapter['car_make'].upper()
+        adapter['car_model'] = adapter['car_model'].upper()
         adapter['car_age'] = round(month_today - car_month,2)
         
         created = datetime.datetime.strptime(adapter['car_created'], '%Y-%m-%d %H:%M:%S').astimezone(pytz.timezone('Europe/Lisbon'))
