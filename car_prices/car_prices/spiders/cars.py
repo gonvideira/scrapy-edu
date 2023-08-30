@@ -104,6 +104,7 @@ class CarsSpider(scrapy.Spider):
             item_vehicle['car_loc_region'] = car['node']['location']['region']['name']
             item_vehicle['car_price_value'] = car['node']['price']['amount']['units']
             item_vehicle['car_price_currency'] = car['node']['price']['amount']['currencyCode']
+            item_vehicle['car_type'] = self.CAR_TYPE
 
             for dict in car['node']['parameters']:
                 if dict['key'] == 'origin':
