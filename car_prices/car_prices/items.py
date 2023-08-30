@@ -30,4 +30,6 @@ class CarItem(Item):
     car_age = Field()
     car_mileage = Field()
     car_engine_power = Field()
+    car_transmission = Field()
+    car_engine_capacity = Field()
     car_ad_days = Field()

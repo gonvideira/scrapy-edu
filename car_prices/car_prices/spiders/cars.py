@@ -121,5 +121,9 @@ class CarsSpider(scrapy.Spider):
                     item_vehicle['car_mileage'] = dict['value']
                 if dict['key'] == 'engine_power':
                     item_vehicle['car_engine_power'] = dict['value']
-
+                if dict['key'] == 'gearbox':
+                    item_vehicle['car_transmission'] = dict['value']
+                if dict['key'] == 'engine_capacity':
+                    item_vehicle['car_engine_capacity'] = dict['value']
+                
             yield item_vehicle
