@@ -4,7 +4,7 @@ import json
 
 class CarDatabase():
     """Class to hold functions for the car database"""
-    db_connection = sqlite3.connect('car_prices/car_database/car_database.db')
+    db_connection = sqlite3.connect('car_database/car_database.db')
     db_cursor = db_connection.cursor()
 
     def create_table_cars(self):

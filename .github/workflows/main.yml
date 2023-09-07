@@ -48,7 +48,7 @@ jobs:
   
       - name: Treat data with Python
         run: python "car_app.py"
-        working-directory: car_prices/car_database
+        working-directory: car_prices
 
       - name: Commit files
         run: |
