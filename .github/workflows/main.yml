@@ -46,6 +46,10 @@ jobs:
         run: scrapy crawl cars -O cars.json
         working-directory: car_prices
   
+      - name: Treat data with Python
+        run: python "car_app.py"
+        working-directory: car_prices/car_database
+
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
