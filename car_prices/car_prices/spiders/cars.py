@@ -9,7 +9,7 @@ class CarsSpider(scrapy.Spider):
     name = "cars"
     allowed_domains = ["www.standvirtual.com"]
 
-    CAR_TYPE = 'compact' # compact or city-car or mini
+    CAR_TYPE = 'mini' # compact or city-car or mini
     PAGE = 1
     KM_MIN = 500
     KM_MAX = 125000
