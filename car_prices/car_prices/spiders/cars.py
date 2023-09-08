@@ -14,10 +14,10 @@ class CarsSpider(scrapy.Spider):
     CAR_TYPE = os.environ['TYPE_PARAMETER']
     PAGE = 1
     KM_MIN = int(os.environ['CAR_KM_MIN'])
-    KM_MAX = 125000
-    PRICE_MIN = 5000
-    PRICE_MAX = 50000
-    NUMBER_YEARS = 5
+    KM_MAX = int(os.environ['CAR_KM_MAX'])
+    PRICE_MIN = int(os.environ['CAR_PRICE_MIN '])
+    PRICE_MAX = int(os.environ['CAR_PRICE_MAX'])
+    NUMBER_YEARS = int(os.environ['CAR_NUMBER_YEARS'])
 
     url_current_year = date.today().year
     url_beginning_year = url_current_year - NUMBER_YEARS + 1
