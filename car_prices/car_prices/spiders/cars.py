@@ -13,7 +13,7 @@ class CarsSpider(scrapy.Spider):
 
     CAR_TYPE = os.environ['TYPE_PARAMETER']
     PAGE = 1
-    KM_MIN = 500
+    KM_MIN = int(os.environ['CAR_KM_MIN'])
     KM_MAX = 125000
     PRICE_MIN = 5000
     PRICE_MAX = 50000
