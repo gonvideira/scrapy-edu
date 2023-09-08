@@ -11,10 +11,17 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env: 
+  CAR_KM_MAX: ${{ vars.CAR_KM_MAX }}
+  CAR_KM_MIN: ${{ vars.CAR_KM_MIN }}
+  CAR_NUMBER_YEARS: ${{ vars.CAR_NUMBER_YEARS }}
+  CAR_PRICE_MAX: ${{ vars.CAR_PRICE_MAX }}
+  CAR_PRICE_MIN: ${{ vars.CAR_PRICE_MIN }}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
-  scrape_city:
+  scrape_compact:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -45,13 +52,8 @@ jobs:
       - name: Scrape Site
         run: scrapy crawl cars -O cars.json
         working-directory: car_prices
-        env: |
+        env:
           TYPE_PARAMETER: 'compact'
-          CAR_KM_MAX: ${{ vars.CAR_KM_MAX }}
-          CAR_KM_MIN: ${{ vars.CAR_KM_MIN }}
-          CAR_NUMBER_YEARS: ${{ vars.CAR_NUMBER_YEARS }}
-          CAR_PRICE_MAX: ${{ vars.CAR_PRICE_MAX }}
-          CAR_PRICE_MIN: ${{ vars.CAR_PRICE_MIN }}
   
       - name: Treat data with Python
         run: python "car_database/car_app.py"
