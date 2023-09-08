@@ -45,6 +45,8 @@ jobs:
       - name: Scrape Site
         run: scrapy crawl cars -O cars.json
         working-directory: car_prices
+        env:
+          TYPE_PARAMETER: 'city-car'
   
       - name: Treat data with Python
         run: python "car_database/car_app.py"

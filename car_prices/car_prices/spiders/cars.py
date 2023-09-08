@@ -1,3 +1,5 @@
+"""Modules that allow for working with Scrapy"""
+import os
 import json
 from datetime import date
 import time
@@ -9,7 +11,7 @@ class CarsSpider(scrapy.Spider):
     name = "cars"
     allowed_domains = ["www.standvirtual.com"]
 
-    CAR_TYPE = 'city-car'
+    CAR_TYPE = os.environ['TYPE_PARAMETER']
     PAGE = 1
     KM_MIN = 500
     KM_MAX = 125000
