@@ -48,6 +48,9 @@ jobs:
         env:
           TYPE_PARAMETER: 'city-car'
   
+      - name: Pause
+        run: sleep 3
+      
       - name: Treat data with Python
         run: python "car_database/car_app.py"
         working-directory: car_prices
