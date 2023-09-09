@@ -15,7 +15,7 @@ class CarsSpider(scrapy.Spider):
     PAGE = 1
     KM_MIN = int(os.environ['CAR_KM_MIN'])
     KM_MAX = int(os.environ['CAR_KM_MAX'])
-    PRICE_MIN = int(os.environ['CAR_PRICE_MIN '])
+    PRICE_MIN = int(os.environ['CAR_PRICE_MIN'])
     PRICE_MAX = int(os.environ['CAR_PRICE_MAX'])
     NUMBER_YEARS = int(os.environ['CAR_NUMBER_YEARS'])
 
