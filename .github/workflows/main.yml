@@ -82,6 +82,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Pull files
+        run: git pull --all
+
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
@@ -133,6 +136,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+
+      - name: Pull files
+        run: git pull --all
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
